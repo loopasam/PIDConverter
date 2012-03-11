@@ -1,0 +1,296 @@
+<!-- ============================================================= -->
+<!-- DTD for NCI-Nature Pathway Interaction Database XML           -->
+<!-- http://pid.nci.nih.gov                                        -->
+<!-- Last Revised: 2006-12-20                                      -->
+<!-- ============================================================= -->
+
+<!ELEMENT NCI_PID_XML
+  ( Created, Ontology?, Model? )
+>
+
+<!ELEMENT Created
+  ( #PCDATA )
+>
+
+
+<!-- ============================================================= -->
+<!-- Ontology                                                      -->
+<!-- ============================================================= -->
+
+<!ELEMENT Ontology
+  ( LabelType+ )
+>
+
+<!ELEMENT LabelType
+  ( LabelValueList )
+>
+<!ATTLIST LabelType
+  name         CDATA #REQUIRED
+  id           CDATA #REQUIRED
+>
+
+<!ELEMENT LabelValueList
+  ( LabelValue+ )
+>
+
+<!ELEMENT LabelValue
+  EMPTY
+>
+<!ATTLIST LabelValue
+  name         CDATA #REQUIRED
+  id           CDATA #REQUIRED
+  parent_idref CDATA #REQUIRED
+  GO           CDATA #IMPLIED
+>
+
+
+<!-- ============================================================= -->
+<!-- Model                                                         -->
+<!-- ============================================================= -->
+
+<!ELEMENT Model
+  ( MoleculeList?, InteractionList?, PathwayList? )
+>
+
+
+<!-- ============================================================= -->
+<!-- Molecule                                                      -->
+<!-- ============================================================= -->
+
+<!ELEMENT MoleculeList
+  ( Molecule+ )
+>
+
+<!ELEMENT Molecule
+  ( Name+, ComplexComponentList?, FamilyMemberList?, Part* )
+>
+<!ATTLIST Molecule
+  molecule_type  ( protein | rna | compound | complex | molecule-type ) #REQUIRED
+  id             CDATA                                 #REQUIRED
+>
+
+<!ELEMENT Name
+  EMPTY
+>
+<!ATTLIST Name
+  name_type      CDATA #REQUIRED
+  long_name_type CDATA #REQUIRED
+  value          CDATA #REQUIRED
+>
+
+<!ELEMENT ComplexComponentList
+  (  ComplexComponent* )
+>
+
+<!ELEMENT ComplexComponent
+  (  Label*, PTMExpression? )
+>
+<!ATTLIST ComplexComponent
+  molecule_idref   CDATA #REQUIRED
+>
+
+<!ELEMENT FamilyMemberList
+  (  Member* )
+>
+
+<!ELEMENT Member
+  (  Label*, PTMExpression? )
+>
+<!ATTLIST Member
+  member_molecule_idref      CDATA #REQUIRED
+>
+
+<!ELEMENT Part
+  EMPTY
+>
+<!ATTLIST Part
+  whole_molecule_idref     CDATA #REQUIRED
+  part_molecule_idref      CDATA #REQUIRED
+  start                    CDATA #REQUIRED
+  end                      CDATA #REQUIRED
+>
+
+<!-- ============================================================= -->
+<!-- Interaction                                                   -->
+<!-- ============================================================= -->
+
+<!ELEMENT InteractionList
+  ( Interaction+ )
+>
+
+<!ELEMENT Interaction
+  ( Abstraction?, Source, PositiveCondition*, NegativeCondition*, Label*, EvidenceList?, ReferenceList?,
+    InteractionComponentList? )
+>
+<!ATTLIST Interaction
+  interaction_type  CDATA #REQUIRED
+  id                CDATA #REQUIRED
+>
+
+<!ELEMENT EvidenceList
+ ( Evidence+ )
+>
+
+<!ELEMENT Evidence
+  ( #PCDATA )
+>
+<!ATTLIST Evidence
+  value ( IAE |
+          IC |
+          IDA |
+          IEA |
+          IEP |
+          IFC |
+          IGI |
+          IMP |
+          IOS |
+          IPI |
+          ISS |
+          NAS |
+          ND |
+          NIL |
+          NR |
+          RCA |
+          RGE |
+          TAS 
+   ) #REQUIRED
+>
+
+<!ELEMENT ReferenceList
+  ( Reference+ )
+>
+
+<!ELEMENT Reference
+  ( #PCDATA )
+>
+<!ATTLIST Reference
+  pmid     CDATA #REQUIRED
+>
+
+<!ELEMENT PositiveCondition
+  ( #PCDATA )
+>
+<!ATTLIST PositiveCondition
+  condition_type     CDATA #REQUIRED
+>
+
+<!ELEMENT NegativeCondition
+  ( #PCDATA )
+>
+<!ATTLIST NegativeCondition
+  condition_type     CDATA #REQUIRED
+>
+
+<!ELEMENT Abstraction
+ EMPTY
+>
+<!ATTLIST Abstraction
+  pathway_idref         CDATA #REQUIRED
+  pathway_name          CDATA #REQUIRED
+  external_pathway_id   CDATA #REQUIRED
+>
+
+<!ELEMENT InteractionComponentList
+  ( InteractionComponent* )
+>
+
+<!ELEMENT InteractionComponent
+  (  Label*, PTMExpression? )
+>
+<!ATTLIST InteractionComponent
+  role_type  ( input | output | agent | inhibitor ) #REQUIRED
+  molecule_idref      CDATA #REQUIRED
+>
+
+
+<!-- ============================================================= -->
+<!-- Pathway                                                       -->
+<!-- ============================================================= -->
+
+<!ELEMENT PathwayList
+  ( Pathway+ )
+>
+
+<!ELEMENT Pathway
+  ( Organism, LongName, ShortName, Source,
+    CuratorList?, ReviewerList?, ReferenceList?, PathwayComponentList? )
+>
+<!ATTLIST Pathway
+  id      CDATA            #REQUIRED
+  subnet   ( true | false ) #REQUIRED
+>
+
+<!ELEMENT Organism
+  ( #PCDATA )
+>
+
+<!ELEMENT LongName
+  ( #PCDATA )
+>
+
+<!ELEMENT ShortName
+  ( #PCDATA )
+>
+
+<!ELEMENT ReviewerList
+  ( Reviewer+ )
+>
+
+<!ELEMENT Reviewer
+  ( #PCDATA )
+>
+
+<!ELEMENT CuratorList
+  ( Curator+ )
+>
+
+<!ELEMENT Curator
+  ( #PCDATA )
+>
+
+<!ELEMENT PathwayComponentList
+  ( PathwayComponent+ )
+>
+
+<!ELEMENT PathwayComponent
+  EMPTY
+>
+<!ATTLIST PathwayComponent
+  interaction_idref        CDATA #REQUIRED
+>
+
+
+<!-- ============================================================= -->
+<!-- Common                                                        -->
+<!-- ============================================================= -->
+
+<!ELEMENT Label
+  EMPTY
+>
+<!ATTLIST Label
+  label_type   CDATA #REQUIRED
+  value        CDATA #REQUIRED
+>
+
+<!ELEMENT Source
+  ( #PCDATA )
+>
+<!ATTLIST Source
+  id           CDATA #REQUIRED
+>
+
+<!ELEMENT PTMExpression
+  ( PTMTerm+ )
+>
+
+<!ELEMENT PTMTerm
+  EMPTY
+>
+<!ATTLIST PTMTerm
+  protein      CDATA #REQUIRED
+  position     CDATA #REQUIRED
+  aa           CDATA #REQUIRED
+  modification CDATA #REQUIRED
+>
+
+<!-- ============================================================= -->
