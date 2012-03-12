@@ -47,4 +47,18 @@ public class LabelType {
 	return labelValues;
     }
 
+    /**
+     * @param id
+     * @return 
+     */
+    public LabelValue getLabelValue(int id) {
+	// TODO Auto-generated method stub
+	for (LabelValue labelValue : this.labelValues) {
+	    if(labelValue.getId() == id){
+		return labelValue;
+	    }
+	}
+	return null;
+    }
+
 }

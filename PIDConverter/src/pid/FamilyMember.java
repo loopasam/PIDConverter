@@ -38,5 +38,13 @@ public class FamilyMember {
     public ArrayList<Label> getLabels() {
 	return labels;
     }
+    
+    /**
+     * 
+     */
+    public FamilyMember() {
+	// TODO Auto-generated constructor stub
+	this.labels = new ArrayList<Label>();
+    }
 
 }
