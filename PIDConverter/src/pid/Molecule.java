@@ -13,7 +13,15 @@ public class Molecule {
     
     private int id;
     private ArrayList<Name> names;
-    
+    private ArrayList<ComplexComponent> complexComponents;
+
+    public void setComplexComponents(ArrayList<ComplexComponent> complexComponents) {
+	this.complexComponents = complexComponents;
+    }
+
+    public ArrayList<ComplexComponent> getComplexComponents() {
+	return complexComponents;
+    }
 
     public void setId(int id) {
 	this.id = id;

@@ -4,20 +4,27 @@
 package converter;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLStreamException;
 
+import pid.ActivityStateLabel;
 import pid.AliasName;
 import pid.ChemicalAbstractName;
 import pid.Complex;
+import pid.ComplexComponent;
 import pid.EntrezGeneName;
 import pid.GeneOntologyName;
+import pid.Label;
 import pid.LabelType;
 import pid.LabelValue;
+import pid.LocationLabel;
 import pid.Model;
 import pid.Molecule;
 import pid.Name;
+import pid.PTMExpression;
+import pid.PTMTerm;
 import pid.PreferredSymbolName;
 import pid.Protein;
 import pid.Ontology;
@@ -80,6 +87,7 @@ public class Converter {
 		    if(burger.tag("Model")){
 			Model model = new Model();
 			while(burger.inTag("Model")){
+			    //Molecule Tags
 			    if(burger.tag("MoleculeList")){
 				while(burger.inTag("MoleculeList")){
 				    if(burger.tag("Molecule")){
@@ -129,7 +137,38 @@ public class Converter {
 					    //TODO finir les molecules
 					    if(burger.tag("ComplexComponentList")){
 						while(burger.inTag("ComplexComponentList")){
-						    
+						    if(burger.tag("ComplexComponent")){
+							ComplexComponent complexComponent = new ComplexComponent();
+							complexComponent.setMolecule_idref(Integer.parseInt(burger.getTagAttribute("molecule_idref")));
+							while(burger.inTag("ComplexComponent")){
+							    if(burger.tag("Label")){
+								String labelType = burger.getTagAttribute("label_type");
+								String labelValue = burger.getTagAttribute("value");
+								Label label = null;
+								if(labelType.equals("activity-state")){
+								    label = new ActivityStateLabel();
+								}else if(labelType.equals("location")){
+								    label = new LocationLabel();
+								}
+								label.setValue(labelValue);
+								complexComponent.getLabels().add(label);
+							    }
+							    if(burger.tag("PTMExpression")){
+								PTMExpression ptmExpression = new PTMExpression();
+								while(burger.inTag("PTMExpression")){
+								    if(burger.tag("PTMTerm")){
+									PTMTerm ptmTerm = new PTMTerm();
+									ptmTerm.setAminoAcid(burger.getTagAttribute("aa"));
+									ptmTerm.setModification(burger.getTagAttribute("modification"));
+									ptmTerm.setPosition(Integer.parseInt(burger.getTagAttribute("position")));
+									ptmTerm.setProtein(burger.getTagAttribute("protein"));
+									ptmExpression.getPtmTerms().add(ptmTerm);
+								    }
+								}
+								complexComponent.setPtmExpression(ptmExpression);
+							    }
+							}
+						    }
 						}
 						
 					    }
@@ -149,7 +188,7 @@ public class Converter {
 	    }
 	}
 
-	verifyMolecules(pid);
+//	verifyMolecules(pid);
 	//	verifyOntologyData(pid);
 
     }

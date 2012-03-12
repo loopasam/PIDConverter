@@ -1,8 +1,4 @@
-<!-- ============================================================= -->
-<!-- DTD for NCI-Nature Pathway Interaction Database XML           -->
-<!-- http://pid.nci.nih.gov                                        -->
-<!-- Last Revised: 2006-12-20                                      -->
-<!-- ============================================================= -->
+
 
 <!ELEMENT NCI_PID_XML
   (Model? )
@@ -25,18 +21,7 @@
 
 
 <!ELEMENT Molecule
-  ( ComplexComponentList?, FamilyMemberList?, Part* )
->
-
-<!ELEMENT ComplexComponentList
-  (  ComplexComponent* )
->
-
-<!ELEMENT ComplexComponent
-  (  Label*, PTMExpression? )
->
-<!ATTLIST ComplexComponent
-  molecule_idref   CDATA #REQUIRED
+  ( FamilyMemberList?, Part* )
 >
 
 <!ELEMENT FamilyMemberList
@@ -214,13 +199,6 @@
 <!-- Common                                                        -->
 <!-- ============================================================= -->
 
-<!ELEMENT Label
-  EMPTY
->
-<!ATTLIST Label
-  label_type   CDATA #REQUIRED
-  value        CDATA #REQUIRED
->
 
 <!ELEMENT Source
   ( #PCDATA )
@@ -229,18 +207,3 @@
   id           CDATA #REQUIRED
 >
 
-<!ELEMENT PTMExpression
-  ( PTMTerm+ )
->
-
-<!ELEMENT PTMTerm
-  EMPTY
->
-<!ATTLIST PTMTerm
-  protein      CDATA #REQUIRED
-  position     CDATA #REQUIRED
-  aa           CDATA #REQUIRED
-  modification CDATA #REQUIRED
->
-
-<!-- ============================================================= -->
