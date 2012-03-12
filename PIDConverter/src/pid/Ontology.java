@@ -6,6 +6,7 @@ package pid;
 import java.util.ArrayList;
 
 /**
+ * Ontologies behind PID
  * @author Samuel Croset
  *
  */
@@ -14,10 +15,9 @@ public class Ontology {
     private ArrayList<LabelType> labelTypes;
     
     /**
-     * 
+     * Only constructor, initialise the array of LabelTypes.
      */
     public Ontology() {
-	// TODO Auto-generated constructor stub.
 	this.labelTypes = new ArrayList<LabelType>();
     }
 
@@ -25,17 +25,19 @@ public class Ontology {
 	this.labelTypes = labelTypes;
     }
 
+    /**
+     * @return the labelTypes, which is a small ontology about a particular facet of the DB.
+     */
     public ArrayList<LabelType> getLabelTypes() {
 	return labelTypes;
     }
 
     /**
-     * @param name
-     * @return
+     * From the name of the LabelType (aka small internal ontology, e.g: "function" or "edge-type") return the object.
+     * @param name 
+     * @return the LabelType object matching the name or null.
      */
-    public LabelType getLabelType(String name) {
-	// TODO Auto-generated method stub
-	
+    public LabelType getLabelType(String name) {	
 	for (LabelType labelType : this.labelTypes) {
 	    if(labelType.getName().equals(name)){
 		return labelType;
@@ -45,11 +47,11 @@ public class Ontology {
     }
 
     /**
+     * From the id of the labelType, returns the object.
      * @param id
-     * @return
+     * @return the labelType object with the corresponding id.
      */
     public LabelType getLabelType(int id) {
-	// TODO Auto-generated method stub
 	for (LabelType labelType : this.labelTypes) {
 	    if(labelType.getId() == id){
 		return labelType;
@@ -57,5 +59,4 @@ public class Ontology {
 	}
 	return null;
     }
-
 }
