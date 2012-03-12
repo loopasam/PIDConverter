@@ -35,4 +35,12 @@ public class ComplexComponent {
         this.ptmExpression = ptmExpression;
     }
     
+    /**
+     * 
+     */
+    public ComplexComponent() {
+	// TODO Auto-generated constructor stub
+	this.labels = new ArrayList<Label>();
+    }
+    
 }

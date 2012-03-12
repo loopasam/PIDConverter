@@ -10,40 +10,9 @@
 <!-- ============================================================= -->
 
 <!ELEMENT Model
-  ( MoleculeList?, InteractionList?, PathwayList? )
+  (InteractionList?, PathwayList? )
 >
 
-
-<!-- ============================================================= -->
-<!-- Molecule                                                      -->
-<!-- ============================================================= -->
-
-
-
-<!ELEMENT Molecule
-  ( FamilyMemberList?, Part* )
->
-
-<!ELEMENT FamilyMemberList
-  (  Member* )
->
-
-<!ELEMENT Member
-  (  Label*, PTMExpression? )
->
-<!ATTLIST Member
-  member_molecule_idref      CDATA #REQUIRED
->
-
-<!ELEMENT Part
-  EMPTY
->
-<!ATTLIST Part
-  whole_molecule_idref     CDATA #REQUIRED
-  part_molecule_idref      CDATA #REQUIRED
-  start                    CDATA #REQUIRED
-  end                      CDATA #REQUIRED
->
 
 <!-- ============================================================= -->
 <!-- Interaction                                                   -->

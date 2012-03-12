@@ -15,6 +15,7 @@ import pid.ChemicalAbstractName;
 import pid.Complex;
 import pid.ComplexComponent;
 import pid.EntrezGeneName;
+import pid.FamilyMember;
 import pid.GeneOntologyName;
 import pid.Label;
 import pid.LabelType;
@@ -22,6 +23,7 @@ import pid.LabelValue;
 import pid.LocationLabel;
 import pid.Model;
 import pid.Molecule;
+import pid.MoleculePart;
 import pid.Name;
 import pid.PTMExpression;
 import pid.PTMTerm;
@@ -93,7 +95,7 @@ public class Converter {
 				    if(burger.tag("Molecule")){
 					String moleculeType = burger.getTagAttribute("molecule_type");
 					Molecule molecule = null;
-					
+
 					if(moleculeType.equals("protein")){
 					    molecule = new Protein();
 					}else if(moleculeType.equals("rna")){
@@ -103,7 +105,7 @@ public class Converter {
 					}else if(moleculeType.equals("complex")){
 					    molecule = new Complex();
 					}
-					
+
 					molecule.setId(Integer.parseInt(burger.getTagAttribute("id")));
 					while(burger.inTag("Molecule")){
 					    if(burger.tag("Name")){
@@ -111,7 +113,7 @@ public class Converter {
 						String nameType = burger.getTagAttribute("name_type");
 						String longNameType = burger.getTagAttribute("long_name_type");
 						String value = burger.getTagAttribute("value");
-						
+
 						if(nameType.equals("UP")){
 						    name = new UniprotName();
 						}else if(nameType.equals("PF")){
@@ -127,13 +129,13 @@ public class Converter {
 						}else{
 						    name = new Name();
 						}
-						
+
 						name.setAbbreviation(nameType);
 						name.setFullName(longNameType);
 						name.setValue(value);
 						molecule.getNames().add(name);	
 					    }
-					    
+
 					    //TODO finir les molecules
 					    if(burger.tag("ComplexComponentList")){
 						while(burger.inTag("ComplexComponentList")){
@@ -170,60 +172,75 @@ public class Converter {
 							}
 						    }
 						}
-						
+
 					    }
 
+//					    if(burger.tag("FamilyMemberList")){
+//
+//						while(burger.tag("FamilyMemberList")){
+//						    if(burger.tag("Member")){
+//							FamilyMember familyMember = new FamilyMember();
+//							familyMember.setMember_molecule_idref(Integer.parseInt(burger.getTagAttribute("member_molecule_idref")));
+//							while(burger.inTag("Member")){
+//							    if(burger.tag("Label")){
+//								String labelType = burger.getTagAttribute("label_type");
+//								String labelValue = burger.getTagAttribute("value");
+//								Label label = null;
+//								if(labelType.equals("activity-state")){
+//								    label = new ActivityStateLabel();
+//								}else if(labelType.equals("location")){
+//								    label = new LocationLabel();
+//								}
+//								label.setValue(labelValue);
+//								familyMember.getLabels().add(label);
+//							    }
+//							    if(burger.tag("PTMExpression")){
+//								PTMExpression ptmExpression = new PTMExpression();
+//								while(burger.inTag("PTMExpression")){
+//								    if(burger.tag("PTMTerm")){
+//									PTMTerm ptmTerm = new PTMTerm();
+//									ptmTerm.setAminoAcid(burger.getTagAttribute("aa"));
+//									ptmTerm.setModification(burger.getTagAttribute("modification"));
+//									ptmTerm.setPosition(Integer.parseInt(burger.getTagAttribute("position")));
+//									ptmTerm.setProtein(burger.getTagAttribute("protein"));
+//									ptmExpression.getPtmTerms().add(ptmTerm);
+//								    }
+//								}
+//								familyMember.setPtmExpression(ptmExpression);
+//							    }
+//							}
+//							molecule.getMembers().add(familyMember);
+//						    }
+//						}
+//					    }
+					    
+					    if(burger.tag("Part")){
+						MoleculePart moleculepart = new MoleculePart();
+						moleculepart.setWhole_molecule_idref(Integer.parseInt(burger.getTagAttribute("whole_molecule_idref")));
+						moleculepart.setPart_molecule_idref(Integer.parseInt(burger.getTagAttribute("part_molecule_idref")));
+						String start = burger.getTagAttribute("start");
+						String end = burger.getTagAttribute("end");
+						if(!start.equals("")){
+						    moleculepart.setStart(Integer.parseInt(start));
+						}
+						if(!end.equals("")){
+						    moleculepart.setEnd(Integer.parseInt(end));
+						}
+						molecule.getParts().add(moleculepart);
+					    }
 					}
 					model.getMolecules().add(molecule);
 				    }
 				}
-
 			    }
 			}
 			pid.setModel(model);
-
 		    }
-
 		}
 	    }
 	}
 
-//	verifyMolecules(pid);
-	//	verifyOntologyData(pid);
 
-    }
-
-    /**
-     * @param pid 
-     * 
-     */
-    private static void verifyMolecules(PID pid) {
-	// TODO Auto-generated method stub
-	Model model = pid.getModel();
-	for (Molecule molecule : model.getMolecules()) {
-	    System.out.println("ID: " + molecule.getId());
-	    for (Name name : molecule.getNames()) {
-		System.out.println("Name: " + name.getValue());
-	    }
-	}
-    }
-
-    /**
-     * @param pid 
-     * 
-     */
-    private static void verifyOntologyData(PID pid) {
-	// TODO Auto-generated method stub
-	String created = pid.getCreated();
-	System.out.println("Created: " + created);
-	Ontology ontology = pid.getOntology();
-	for (LabelType labelType : ontology.getLabelTypes()) {
-	    System.out.println("Id: " + labelType.getId() + " - Name: " + labelType.getName());
-	    for (LabelValue labelValue : labelType.getLabelValues()) {
-		System.out.println("label name: " + labelValue.getName() + " -Id: " + labelValue.getId() + " -GO: " + labelValue.getGo() + "  - Parent: " + labelValue.getParent_idref());
-	    }
-
-	}
     }
 
 }

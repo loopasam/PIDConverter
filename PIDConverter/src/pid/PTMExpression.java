@@ -20,5 +20,13 @@ public class PTMExpression {
     public ArrayList<PTMTerm> getPtmTerms() {
 	return ptmTerms;
     }
+    
+    /**
+     * 
+     */
+    public PTMExpression() {
+	// TODO Auto-generated constructor stub
+	this.ptmTerms = new ArrayList<PTMTerm>();
+    }
 
 }
