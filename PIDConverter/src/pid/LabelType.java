@@ -6,23 +6,25 @@ package pid;
 import java.util.ArrayList;
 
 /**
+ * LabelTypes are top level categories for a small ontology present within PID
  * @author Samuel Croset
  *
  */
 public class LabelType {
-    
     private ArrayList<LabelValue> labelValues;
     private String name;
     private int id;
 
     /**
-     * 
+     * Default constructor, initialise the array.
      */
     public LabelType() {
-	// TODO Auto-generated constructor stub
 	this.labelValues = new ArrayList<LabelValue>();
     }
     
+    /**
+     * @return the name of the label type, in other word name of the ontology
+     */
     public String getName() {
         return name;
     }
@@ -31,6 +33,9 @@ public class LabelType {
         this.name = name;
     }
 
+    /**
+     * @return the id of the label type
+     */
     public int getId() {
         return id;
     }
@@ -43,16 +48,18 @@ public class LabelType {
 	this.labelValues = labelValues;
     }
 
+    /**
+     * @return the label values (children) associated with a label type.
+     */
     public ArrayList<LabelValue> getLabelValues() {
 	return labelValues;
     }
 
     /**
      * @param id
-     * @return 
+     * @return return the label value (child of label type) matching the id
      */
     public LabelValue getLabelValue(int id) {
-	// TODO Auto-generated method stub
 	for (LabelValue labelValue : this.labelValues) {
 	    if(labelValue.getId() == id){
 		return labelValue;

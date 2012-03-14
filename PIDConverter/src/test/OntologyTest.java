@@ -1,5 +1,5 @@
 /**
- * Test to see whether the objects associated with ontology are correctly populated
+ * 
  */
 package test;
 
@@ -19,6 +19,7 @@ import converter.Converter;
 
 
 /**
+ * Test to see whether the objects associated with ontology are correctly populated
  * @author Samuel Croset
  *
  */

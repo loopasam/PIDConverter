@@ -68,4 +68,28 @@ public class Molecule {
 	this.parts = new ArrayList<MoleculePart>();
     }
 
+    /**
+     * @return 
+     */
+    public UniprotName getUniprotName() {
+	for (Name name : this.names) {
+	    if(name.getClass().equals(UniprotName.class)){
+		return (UniprotName) name;
+	    }
+	}
+	return null;
+    }
+
+    /**
+     * @return
+     */
+    public PreferredSymbolName getPreferredSymbolName() {
+	for (Name name : this.names) {
+	    if(name.getClass().equals(PreferredSymbolName.class)){
+		return (PreferredSymbolName) name;
+	    }
+	}
+	return null;
+    }
+
 }

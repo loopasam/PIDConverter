@@ -5,6 +5,7 @@ package pid;
 
 import java.util.ArrayList;
 
+
 /**
  * @author Samuel Croset
  *
@@ -43,6 +44,20 @@ public class Model {
 	this.interactions = new ArrayList<Interaction>();
 	this.molecules = new ArrayList<Molecule>();
 	this.pathways = new ArrayList<Pathway>();
+    }
+    
+    /**
+     * @param id 
+     * @return the molecule corresponding to the id
+     */
+    public Molecule getMolecule(int id) {
+	// TODO Auto-generated method stub
+	for (Molecule molecule : this.molecules) {
+	    if(molecule.getId() == id){
+		return molecule;
+	    }
+	}
+	return null;
     }
 
 }
