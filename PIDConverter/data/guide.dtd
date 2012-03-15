@@ -1,10 +1,4 @@
 
-
-<!ELEMENT NCI_PID_XML
-  (Model? )
->
-
-
 <!-- ============================================================= -->
 <!-- Model                                                         -->
 <!-- ============================================================= -->
@@ -20,38 +14,10 @@
 
 
 <!ELEMENT Interaction
-  ( Abstraction?, Source, PositiveCondition*, NegativeCondition*, Label*, EvidenceList?, ReferenceList?,
+  (ReferenceList?,
     InteractionComponentList? )
 >
 
-<!ELEMENT EvidenceList
- ( Evidence+ )
->
-
-<!ELEMENT Evidence
-  ( #PCDATA )
->
-<!ATTLIST Evidence
-  value ( IAE |
-          IC |
-          IDA |
-          IEA |
-          IEP |
-          IFC |
-          IGI |
-          IMP |
-          IOS |
-          IPI |
-          ISS |
-          NAS |
-          ND |
-          NIL |
-          NR |
-          RCA |
-          RGE |
-          TAS 
-   ) #REQUIRED
->
 
 <!ELEMENT ReferenceList
   ( Reference+ )
@@ -64,28 +30,6 @@
   pmid     CDATA #REQUIRED
 >
 
-<!ELEMENT PositiveCondition
-  ( #PCDATA )
->
-<!ATTLIST PositiveCondition
-  condition_type     CDATA #REQUIRED
->
-
-<!ELEMENT NegativeCondition
-  ( #PCDATA )
->
-<!ATTLIST NegativeCondition
-  condition_type     CDATA #REQUIRED
->
-
-<!ELEMENT Abstraction
- EMPTY
->
-<!ATTLIST Abstraction
-  pathway_idref         CDATA #REQUIRED
-  pathway_name          CDATA #REQUIRED
-  external_pathway_id   CDATA #REQUIRED
->
 
 <!ELEMENT InteractionComponentList
   ( InteractionComponent* )
@@ -154,18 +98,5 @@
 >
 <!ATTLIST PathwayComponent
   interaction_idref        CDATA #REQUIRED
->
-
-
-<!-- ============================================================= -->
-<!-- Common                                                        -->
-<!-- ============================================================= -->
-
-
-<!ELEMENT Source
-  ( #PCDATA )
->
-<!ATTLIST Source
-  id           CDATA #REQUIRED
 >
 

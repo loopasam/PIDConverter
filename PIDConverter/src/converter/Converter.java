@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLStreamException;
 
+import pid.Abstraction;
 import pid.ActivityStateLabel;
 import pid.AliasName;
 import pid.ChemicalAbstractName;
@@ -27,10 +28,12 @@ import pid.Model;
 import pid.Molecule;
 import pid.MoleculePart;
 import pid.Name;
+import pid.NegativeCondition;
 import pid.Ontology;
 import pid.PID;
 import pid.PTMExpression;
 import pid.PTMTerm;
+import pid.PositiveCondition;
 import pid.PreferredSymbolName;
 import pid.Protein;
 import pid.RNA;
@@ -128,27 +131,49 @@ public class Converter {
 
 	
 	if(burger.tag("InteractionList")){
-	    
-	    ArrayList<String> interactions = new ArrayList<String>();
-	    
-	    
 	    while(burger.inTag("InteractionList")){
 		if(burger.tag("Interaction")){
 		    Interaction interaction = new Interaction();
 		    String interactionType = burger.getTagAttribute("interaction_type");
+		    interaction.setInteractionType(interactionType);
 		    String id = burger.getTagAttribute("id");
 		    interaction.setId(id);
-		    
-		    
-		    if(!interactions.contains(interactionType)){
-			interactions.add(interactionType);
-			for (String inte : interactions) {
-			    System.out.print(inte + " - ");
-			}
-			System.out.println("---");
-		    }
-		    
 		    while(burger.inTag("Interaction")){
+			
+			if(burger.tag("Abstraction")){
+			    Abstraction abstraction = new Abstraction();
+			    abstraction.setExternal_pathway_id(burger.getTagAttribute("external_pathway_id"));
+			    abstraction.setPathway_idref(Integer.parseInt(burger.getTagAttribute("pathway_idref")));
+			    abstraction.setPathway_name(burger.getTagAttribute("pathway_name"));
+			    interaction.setAbstraction(abstraction);
+			}
+			
+			if(burger.tag("Source")){
+			    interaction.setSource(burger.getTagText());
+			}
+			
+			if(burger.tag("PositiveCondition")){
+			    PositiveCondition positiveCondition = new PositiveCondition();
+			    positiveCondition.setCondition_type(burger.getTagAttribute("condition_type"));
+			    interaction.getConditions().add(positiveCondition);
+			}
+			
+			if(burger.tag("NegativeCondition")){
+			    NegativeCondition negativeCondition = new NegativeCondition();
+			    negativeCondition.setCondition_type(burger.getTagAttribute("condition_type"));
+			    interaction.getConditions().add(negativeCondition);
+			}
+			
+			if(burger.tag("EvidenceList")){
+			    while(burger.inTag("EvidenceList")){
+				if(burger.tag("Evidence")){
+				    String evidence = burger.getTagAttribute("value");
+				    interaction.getEvidences().add(evidence);
+				}
+			    }
+			    
+			}
+			
 			
 		    }
 

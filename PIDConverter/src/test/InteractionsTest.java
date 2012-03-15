@@ -35,8 +35,26 @@ public class InteractionsTest {
     @Test
     public void testInteractionId() throws XMLStreamException {
 	Model model = pid.getModel();
-	Interaction interaction = model.getInteraction("205018");
+	Interaction interaction = model.getInteraction("206322");
 	assertNotNull(interaction);
+	assertEquals("microtubule-based movement", interaction.getInteractionType());
+    }
+
+    @Test
+    public void testAbstraction(){
+	Model model = pid.getModel();
+	Interaction interaction = model.getInteraction("202269");
+	assertEquals("Alternative NF-kappaB pathway", interaction.getAbstraction().getPathway_name());
+	assertEquals("NCI-Nature Curated", interaction.getSource());
+    }
+
+    @Test
+    public void testConditions(){
+	Model model = pid.getModel();
+	Interaction interaction = model.getInteraction("200806");
+	assertEquals(2, interaction.getConditions().size());
+	assertEquals("receptor clustering", interaction.getConditions().get(0).getCondition_type());
+	assertEquals("IDA", interaction.getEvidences().get(0));
     }
 
 }

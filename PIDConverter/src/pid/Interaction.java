@@ -13,10 +13,11 @@ public class Interaction {
     
     //It's a string because of one problem with an id
     private String id;
+    //Odd construct of the XML
+    private String interactionType;
     private Abstraction abstraction;
     private String source;
     private ArrayList<Condition> conditions;
-    private ArrayList<Label> labels;
     private ArrayList<String> evidences;
     private ArrayList<Integer> references;
     private ArrayList<InteractionComponent> components;
@@ -27,6 +28,12 @@ public class Interaction {
     }
     public void setId(String id) {
         this.id = id;
+    }
+    public void setInteractionType(String interactionType) {
+	this.interactionType = interactionType;
+    }
+    public String getInteractionType() {
+	return interactionType;
     }
     public Abstraction getAbstraction() {
         return abstraction;
@@ -46,12 +53,6 @@ public class Interaction {
     public void setConditions(ArrayList<Condition> conditions) {
         this.conditions = conditions;
     }
-    public ArrayList<Label> getLabels() {
-        return labels;
-    }
-    public void setLabels(ArrayList<Label> labels) {
-        this.labels = labels;
-    }
     public ArrayList<String> getEvidences() {
         return evidences;
     }
@@ -69,6 +70,17 @@ public class Interaction {
     }
     public void setComponents(ArrayList<InteractionComponent> components) {
         this.components = components;
+    }
+    
+    /**
+     * 
+     */
+    public Interaction() {
+	// TODO Auto-generated constructor stub
+	this.components = new ArrayList<InteractionComponent>();
+	this.conditions = new ArrayList<Condition>();
+	this.evidences = new ArrayList<String>();
+	this.references = new ArrayList<Integer>();
     }
     
     
