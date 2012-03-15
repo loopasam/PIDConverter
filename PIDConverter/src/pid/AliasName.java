@@ -4,6 +4,7 @@
 package pid;
 
 /**
+ * Alternative name for a protein
  * @author Samuel Croset
  *
  */

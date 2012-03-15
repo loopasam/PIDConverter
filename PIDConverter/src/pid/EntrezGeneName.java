@@ -4,6 +4,7 @@
 package pid;
 
 /**
+ * Entrez Gene reference
  * @author Samuel Croset
  *
  */

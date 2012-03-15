@@ -6,6 +6,7 @@ package pid;
 import java.util.ArrayList;
 
 /**
+ * Generic type
  * @author Samuel Croset
  *
  */
@@ -21,6 +22,9 @@ public class Molecule {
 	this.parts = parts;
     }
 
+    /**
+     * @return 
+     */
     public ArrayList<MoleculePart> getParts() {
 	return parts;
     }

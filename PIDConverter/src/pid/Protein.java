@@ -6,6 +6,7 @@ package pid;
 import pid.Molecule;
 
 /**
+ * Type of molecule, mostly used within PID
  * @author Samuel Croset
  *
  */

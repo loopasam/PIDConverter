@@ -4,6 +4,7 @@
 package pid;
 
 /**
+ * Gene Ontology reference
  * @author Samuel Croset
  *
  */
