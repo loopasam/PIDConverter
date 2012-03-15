@@ -18,17 +18,10 @@
 <!-- Interaction                                                   -->
 <!-- ============================================================= -->
 
-<!ELEMENT InteractionList
-  ( Interaction+ )
->
 
 <!ELEMENT Interaction
   ( Abstraction?, Source, PositiveCondition*, NegativeCondition*, Label*, EvidenceList?, ReferenceList?,
     InteractionComponentList? )
->
-<!ATTLIST Interaction
-  interaction_type  CDATA #REQUIRED
-  id                CDATA #REQUIRED
 >
 
 <!ELEMENT EvidenceList

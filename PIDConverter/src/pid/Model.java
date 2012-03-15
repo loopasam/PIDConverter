@@ -59,5 +59,18 @@ public class Model {
 	}
 	return null;
     }
+    /**
+     * @param id
+     * @return
+     */
+    public Interaction getInteraction(String id) {
+	// TODO Auto-generated method stub
+	for (Interaction interaction : this.interactions) {
+	    if(interaction.getId().equals(id)){
+		return interaction;
+	    }
+	}
+	return null;
+    }
 
 }

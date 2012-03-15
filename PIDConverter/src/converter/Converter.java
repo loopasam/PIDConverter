@@ -4,6 +4,7 @@
 package converter;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLStreamException;
@@ -17,6 +18,7 @@ import pid.Compound;
 import pid.EntrezGeneName;
 import pid.FamilyMember;
 import pid.GeneOntologyName;
+import pid.Interaction;
 import pid.Label;
 import pid.LabelType;
 import pid.LabelValue;
@@ -106,7 +108,7 @@ public class Converter {
 			Model model = new Model();
 			while(burger.inTag("Model")){
 			    this.parseMolecules(model);
-
+			    this.parseInteractions(model);
 			}
 			pid.setModel(model);
 
@@ -115,6 +117,47 @@ public class Converter {
 		}
 	    }
 	}
+    }
+
+    /**
+     * Parse the interactions
+     * @param model
+     * @throws XMLStreamException 
+     */
+    private void parseInteractions(Model model) throws XMLStreamException {
+
+	
+	if(burger.tag("InteractionList")){
+	    
+	    ArrayList<String> interactions = new ArrayList<String>();
+	    
+	    
+	    while(burger.inTag("InteractionList")){
+		if(burger.tag("Interaction")){
+		    Interaction interaction = new Interaction();
+		    String interactionType = burger.getTagAttribute("interaction_type");
+		    String id = burger.getTagAttribute("id");
+		    interaction.setId(id);
+		    
+		    
+		    if(!interactions.contains(interactionType)){
+			interactions.add(interactionType);
+			for (String inte : interactions) {
+			    System.out.print(inte + " - ");
+			}
+			System.out.println("---");
+		    }
+		    
+		    while(burger.inTag("Interaction")){
+			
+		    }
+
+		    model.getInteractions().add(interaction);
+		}
+	    }
+	}
+
+
     }
 
     /**
