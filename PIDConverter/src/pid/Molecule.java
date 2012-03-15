@@ -6,7 +6,7 @@ package pid;
 import java.util.ArrayList;
 
 /**
- * Generic type
+ * Generic type of molecule, this class represent a structured sequence of atoms.
  * @author Samuel Croset
  *
  */
@@ -23,7 +23,7 @@ public class Molecule {
     }
 
     /**
-     * @return 
+     * @return the molecules in which the current molecule is part of.
      */
     public ArrayList<MoleculePart> getParts() {
 	return parts;
@@ -32,7 +32,10 @@ public class Molecule {
     public void setMembers(ArrayList<FamilyMember> familyMembers) {
 	this.familyMembers = familyMembers;
     }
-
+    
+    /**
+     * @return the family members of the current molecule.
+     */
     public ArrayList<FamilyMember> getMembers() {
 	return familyMembers;
     }
@@ -41,6 +44,9 @@ public class Molecule {
 	this.complexComponents = complexComponents;
     }
 
+    /**
+     * @return the component of a complex molecule.
+     */
     public ArrayList<ComplexComponent> getComplexComponents() {
 	return complexComponents;
     }
@@ -49,6 +55,9 @@ public class Molecule {
 	this.id = id;
     }
 
+    /**
+     * @return the id of the current molecule.
+     */
     public int getId() {
 	return id;
     }
@@ -57,15 +66,17 @@ public class Molecule {
 	this.names = names;
     }
 
+    /**
+     * @return the names associated with the current molecule. Names are ways to describe proteins by the community.
+     */
     public ArrayList<Name> getNames() {
 	return names;
     }
     
     /**
-     * 
+     * Only constructor, initialise the array.
      */
     public Molecule() {
-	// TODO Auto-generated constructor stub
 	this.names = new ArrayList<Name>();
 	this.complexComponents = new ArrayList<ComplexComponent>();
 	this.familyMembers = new ArrayList<FamilyMember>();
@@ -73,7 +84,7 @@ public class Molecule {
     }
 
     /**
-     * @return 
+     * @return the uniprot name for the current molecule. Uniprot name is a cross-reference to a uniprot identifier.
      */
     public UniprotName getUniprotName() {
 	for (Name name : this.names) {
@@ -85,7 +96,7 @@ public class Molecule {
     }
 
     /**
-     * @return
+     * @return the preferred symbol of the current molecule. Useful to display the protein name to users.
      */
     public PreferredSymbolName getPreferredSymbolName() {
 	for (Name name : this.names) {

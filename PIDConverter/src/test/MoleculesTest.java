@@ -17,6 +17,7 @@ import pid.ComplexComponent;
 import pid.FamilyMember;
 import pid.Model;
 import pid.Molecule;
+import pid.MoleculePart;
 import pid.Name;
 import pid.PID;
 import pid.PTMExpression;
@@ -81,6 +82,14 @@ public class MoleculesTest {
 	assertEquals(201087, member.getMember_molecule_idref());
 	PTMTerm ptmTerm = member.getPtmExpression().getPtmTerms().get(0);
 	assertEquals("P07947", ptmTerm.getProtein());
+    }
+    
+    @Test
+    public void testPartMolecule() {
+	Model model = pid.getModel();
+	Molecule moleculePart = model.getMolecule(200978);
+	MoleculePart part = moleculePart.getParts().get(0);
+	assertEquals(200451, part.getWhole_molecule_idref());
     }
 
 }

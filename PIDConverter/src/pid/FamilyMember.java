@@ -6,6 +6,7 @@ package pid;
 import java.util.ArrayList;
 
 /**
+ * A molecule member of a family (higher order).
  * @author Samuel Croset
  *
  */
@@ -19,6 +20,9 @@ public class FamilyMember {
 	this.member_molecule_idref = member_molecule_idref;
     }
 
+    /**
+     * @return the id of the current family member.
+     */
     public int getMember_molecule_idref() {
 	return member_molecule_idref;
     }
@@ -27,6 +31,9 @@ public class FamilyMember {
 	this.ptmExpression = ptmExpression;
     }
 
+    /**
+     * @return the PTM expression associated with the current family member.
+     */
     public PTMExpression getPtmExpression() {
 	return ptmExpression;
     }
@@ -35,15 +42,17 @@ public class FamilyMember {
 	this.labels = labels;
     }
 
+    /**
+     * @return the labels associated with the current family member.
+     */
     public ArrayList<Label> getLabels() {
 	return labels;
     }
     
     /**
-     * 
+     * Only constructor, initialise the array.
      */
     public FamilyMember() {
-	// TODO Auto-generated constructor stub
 	this.labels = new ArrayList<Label>();
     }
 
