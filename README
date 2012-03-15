@@ -1,4 +1,10 @@
-PID Converter - In Development
+ ____ ___ ____     ____                          _            
+|  _ \_ _|  _ \   / ___|___  _ ____   _____ _ __| |_ ___ _ __ 
+| |_) | || | | | | |   / _ \| '_ \ \ / / _ \ '__| __/ _ \ '__|
+|  __/| || |_| | | |__| (_) | | | \ V /  __/ |  | ||  __/ |   
+|_|  |___|____/   \____\___/|_| |_|\_/ \___|_|   \__\___|_|   
+
+In Development
 
 A converter for the data provided by the Pathway Interaction Database (http://pid.nci.nih.gov/).
 The XML provided is converted into Java Objects, which can be used by other programs.
