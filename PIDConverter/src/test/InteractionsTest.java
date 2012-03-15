@@ -17,6 +17,7 @@ import pid.PID;
 import converter.Converter;
 
 /**
+ * Test to see whether the interactions are correctly populated.
  * @author Samuel Croset
  *
  */
