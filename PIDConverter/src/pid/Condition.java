@@ -4,6 +4,7 @@
 package pid;
 
 /**
+ * A generic condition, influencing an interaction
  * @author Samuel Croset
  *
  */

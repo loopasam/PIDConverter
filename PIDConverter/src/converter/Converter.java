@@ -4,13 +4,13 @@
 package converter;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLStreamException;
 
 import pid.Abstraction;
 import pid.ActivityStateLabel;
+import pid.Agent;
 import pid.AliasName;
 import pid.ChemicalAbstractName;
 import pid.Complex;
@@ -18,8 +18,12 @@ import pid.ComplexComponent;
 import pid.Compound;
 import pid.EntrezGeneName;
 import pid.FamilyMember;
+import pid.FunctionLabel;
 import pid.GeneOntologyName;
+import pid.Inhibitor;
+import pid.Input;
 import pid.Interaction;
+import pid.InteractionComponent;
 import pid.Label;
 import pid.LabelType;
 import pid.LabelValue;
@@ -30,6 +34,7 @@ import pid.MoleculePart;
 import pid.Name;
 import pid.NegativeCondition;
 import pid.Ontology;
+import pid.Output;
 import pid.PID;
 import pid.PTMExpression;
 import pid.PTMTerm;
@@ -112,6 +117,8 @@ public class Converter {
 			while(burger.inTag("Model")){
 			    this.parseMolecules(model);
 			    this.parseInteractions(model);
+			    //TODO
+			    this.parsePathways(model);
 			}
 			pid.setModel(model);
 
@@ -123,13 +130,21 @@ public class Converter {
     }
 
     /**
+     * @param model
+     */
+    private void parsePathways(Model model) {
+	// TODO Auto-generated method stub
+	
+    }
+
+    /**
      * Parse the interactions
      * @param model
      * @throws XMLStreamException 
      */
     private void parseInteractions(Model model) throws XMLStreamException {
 
-	
+
 	if(burger.tag("InteractionList")){
 	    while(burger.inTag("InteractionList")){
 		if(burger.tag("Interaction")){
@@ -139,7 +154,7 @@ public class Converter {
 		    String id = burger.getTagAttribute("id");
 		    interaction.setId(id);
 		    while(burger.inTag("Interaction")){
-			
+
 			if(burger.tag("Abstraction")){
 			    Abstraction abstraction = new Abstraction();
 			    abstraction.setExternal_pathway_id(burger.getTagAttribute("external_pathway_id"));
@@ -147,23 +162,23 @@ public class Converter {
 			    abstraction.setPathway_name(burger.getTagAttribute("pathway_name"));
 			    interaction.setAbstraction(abstraction);
 			}
-			
+
 			if(burger.tag("Source")){
 			    interaction.setSource(burger.getTagText());
 			}
-			
+
 			if(burger.tag("PositiveCondition")){
 			    PositiveCondition positiveCondition = new PositiveCondition();
 			    positiveCondition.setCondition_type(burger.getTagAttribute("condition_type"));
 			    interaction.getConditions().add(positiveCondition);
 			}
-			
+
 			if(burger.tag("NegativeCondition")){
 			    NegativeCondition negativeCondition = new NegativeCondition();
 			    negativeCondition.setCondition_type(burger.getTagAttribute("condition_type"));
 			    interaction.getConditions().add(negativeCondition);
 			}
-			
+
 			if(burger.tag("EvidenceList")){
 			    while(burger.inTag("EvidenceList")){
 				if(burger.tag("Evidence")){
@@ -171,12 +186,76 @@ public class Converter {
 				    interaction.getEvidences().add(evidence);
 				}
 			    }
-			    
 			}
-			
-			
-		    }
 
+			if(burger.tag("ReferenceList")){
+			    while(burger.inTag("ReferenceList")){
+				if(burger.tag("Reference")){
+				    int pmid = Integer.parseInt(burger.getTagAttribute("pmid"));
+				    interaction.getReferences().add(pmid);
+				}
+			    }
+			}
+
+			if(burger.tag("InteractionComponentList")){
+			    while(burger.inTag("InteractionComponentList")){
+				if(burger.tag("InteractionComponent")){
+				    InteractionComponent interactionComponent = null;
+				    String role = burger.getTagAttribute("role_type");
+				    int idref = Integer.parseInt(burger.getTagAttribute("molecule_idref"));
+
+				    if(role.equals("input")){
+					interactionComponent = new Input();
+				    }else if(role.equals("output")){
+					interactionComponent = new Output();
+				    }else if(role.equals("agent")){
+					interactionComponent = new Agent();
+				    }else if(role.equals("inhibitor")){
+					interactionComponent = new Inhibitor();
+				    }
+
+				    interactionComponent.setMolecule_idref(idref);
+
+				    while(burger.inTag("InteractionComponent")){
+
+					if(burger.tag("Label")){
+					    String labelType = burger.getTagAttribute("label_type");
+					    Label label = null;
+					    if(labelType.equals("activity-state")){
+						label = new ActivityStateLabel();
+					    }else if(labelType.equals("location")){
+						label = new LocationLabel();
+					    }else if(labelType.equals("function")){
+						label = new FunctionLabel();
+					    }else{
+						label = new Label();
+					    }
+					    label.setValue(burger.getTagAttribute("value"));
+					    interactionComponent.getLabels().add(label);
+					}
+
+					if(burger.tag("PTMExpression")){
+					    PTMExpression ptmExpression = new PTMExpression();
+					    while(burger.inTag("PTMExpression")){
+						if(burger.tag("PTMTerm")){
+						    PTMTerm ptmTerm = new PTMTerm();
+						    ptmTerm.setAminoAcid(burger.getTagAttribute("aa"));
+						    ptmTerm.setModification(burger.getTagAttribute("modification"));
+						    ptmTerm.setPosition(Integer.parseInt(burger.getTagAttribute("position")));
+						    ptmTerm.setProtein(burger.getTagAttribute("protein"));
+						    ptmExpression.getPtmTerms().add(ptmTerm);
+						}
+					    }
+					    interactionComponent.setPtmExpression(ptmExpression);
+					}					
+				    }
+				    interaction.getComponents().add(interactionComponent);
+
+				}
+			    }
+
+			}
+		    }
 		    model.getInteractions().add(interaction);
 		}
 	    }

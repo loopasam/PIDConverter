@@ -49,12 +49,29 @@ public class InteractionsTest {
     }
 
     @Test
-    public void testConditions(){
+    public void testInteractionArrays(){
 	Model model = pid.getModel();
 	Interaction interaction = model.getInteraction("200806");
 	assertEquals(2, interaction.getConditions().size());
 	assertEquals("receptor clustering", interaction.getConditions().get(0).getCondition_type());
 	assertEquals("IDA", interaction.getEvidences().get(0));
+	int pmid = interaction.getReferences().get(0);
+	assertEquals(9244302, pmid);
+    }
+
+    @Test
+    public void testLabelInteractionComponent(){
+	Model model = pid.getModel();
+	Interaction interaction = model.getInteraction("206160");
+	assertEquals(3, interaction.getComponents().size());
+	assertEquals("cytoplasm", interaction.getComponents().get(0).getLabels().get(0).getValue());
+    }
+
+    @Test
+    public void testPTMinteractionComponent(){
+	Model model = pid.getModel();
+	Interaction interaction = model.getInteraction("206160");
+	assertEquals("Q05397-1", interaction.getComponents().get(0).getPtmExpression().getPtmTerms().get(0).getProtein());
     }
 
 }

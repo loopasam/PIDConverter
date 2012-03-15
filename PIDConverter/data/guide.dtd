@@ -4,45 +4,8 @@
 <!-- ============================================================= -->
 
 <!ELEMENT Model
-  (InteractionList?, PathwayList? )
+  (PathwayList? )
 >
-
-
-<!-- ============================================================= -->
-<!-- Interaction                                                   -->
-<!-- ============================================================= -->
-
-
-<!ELEMENT Interaction
-  (ReferenceList?,
-    InteractionComponentList? )
->
-
-
-<!ELEMENT ReferenceList
-  ( Reference+ )
->
-
-<!ELEMENT Reference
-  ( #PCDATA )
->
-<!ATTLIST Reference
-  pmid     CDATA #REQUIRED
->
-
-
-<!ELEMENT InteractionComponentList
-  ( InteractionComponent* )
->
-
-<!ELEMENT InteractionComponent
-  (  Label*, PTMExpression? )
->
-<!ATTLIST InteractionComponent
-  role_type  ( input | output | agent | inhibitor ) #REQUIRED
-  molecule_idref      CDATA #REQUIRED
->
-
 
 <!-- ============================================================= -->
 <!-- Pathway                                                       -->
