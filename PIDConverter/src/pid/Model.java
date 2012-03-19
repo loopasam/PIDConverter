@@ -59,6 +59,7 @@ public class Model {
 	}
 	return null;
     }
+    
     /**
      * @param id
      * @return
@@ -68,6 +69,20 @@ public class Model {
 	for (Interaction interaction : this.interactions) {
 	    if(interaction.getId().equals(id)){
 		return interaction;
+	    }
+	}
+	return null;
+    }
+    
+    /**
+     * @param id
+     * @return
+     */
+    public Pathway getPathway(int id) {
+	// TODO Auto-generated method stub
+	for (Pathway pathway : this.pathways) {
+	    if(pathway.getId() == id){
+		return pathway;
 	    }
 	}
 	return null;

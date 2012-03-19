@@ -38,6 +38,8 @@ import pid.Output;
 import pid.PID;
 import pid.PTMExpression;
 import pid.PTMTerm;
+import pid.Pathway;
+import pid.PathwayComponent;
 import pid.PositiveCondition;
 import pid.PreferredSymbolName;
 import pid.Protein;
@@ -133,9 +135,63 @@ public class Converter {
      * @param model
      */
     private void parsePathways(Model model) {
-	// TODO Auto-generated method stub
-	
+
+	if(burger.tag("PathwayList")){
+	    while(burger.inTag("PathwayList")){
+		if(burger.tag("Pathway")){
+		    Pathway pathway = new Pathway();
+		    pathway.setId(Integer.parseInt(burger.getTagAttribute("id")));
+		    pathway.setSubnet(Boolean.parseBoolean(burger.getTagAttribute("subnet")));		    
+		    while(burger.inTag("Pathway")){
+			if(burger.tag("Organism")){
+			    pathway.setOrganism(burger.getTagText());
+			}
+			if(burger.tag("LongName")){
+			    pathway.setLongName(burger.getTagText());
+			}
+			if(burger.tag("ShortName")){
+			    pathway.setShortName(burger.getTagText());
+			}
+			if(burger.tag("Source")){
+			    pathway.setSource(burger.getTagText());
+			}
+
+			if(burger.tag("CuratorList")){
+			    while(burger.inTag("CuratorList")){
+				if(burger.tag("Curator")){
+				    pathway.getCurators().add(burger.getTagText());
+				}
+			    }
+			}
+
+			if(burger.tag("ReviewerList")){
+			    while(burger.inTag("ReviewerList")){
+				if(burger.tag("Reviewer")){
+				    pathway.getReviewers().add(burger.getTagText());
+				}
+			    }
+			}
+
+			if(burger.tag("PathwayComponentList")){
+			    while(burger.inTag("PathwayComponentList")){
+				if(burger.tag("PathwayComponent")){
+				    PathwayComponent component = new PathwayComponent();
+				    component.setInteraction_idref(burger.getTagAttribute("interaction_idref"));
+				    pathway.getPathwayComponents().add(component);
+				}
+			    }
+
+			}
+
+		    }
+		    model.getPathways().add(pathway);
+		}
+	    }
+
+	}
+
     }
+
 
     /**
      * Parse the interactions
