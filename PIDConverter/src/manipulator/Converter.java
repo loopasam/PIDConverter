@@ -3,9 +3,14 @@
  */
 package manipulator;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.util.zip.GZIPInputStream;
 
 import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLStreamException;
@@ -96,15 +101,17 @@ public class Converter {
     }
 
     /**
+     * Construction of the converter from the XML file of the PID.
      * @param pathToXml
-     * Only way to construct a new Converter, from an info about where is located the XML file to parse.
      */
+
     public Converter(String pathToXml) {
 	this.pid = new PID();
 	this.burger = new XMLBurger(pathToXml);
     }
 
     /**
+     * Construction of the converter and outputting the serialised objects.
      * @param pathToXml
      * @param pathToOutputFile
      */
@@ -112,6 +119,35 @@ public class Converter {
 	this.pid = new PID();
 	this.burger = new XMLBurger(pathToXml);
 	this.outputPath = pathToOutputFile;
+    }
+
+    /**
+     * Preferred constructor.
+     * Constructor downloading the file from the online repository, doing the conversion and outputting the results.
+     * @param pidUrl
+     * @param pathToOutputFile
+     * @throws IOException 
+     */
+    public Converter(URL pidUrl, String pathToOutputFile) throws IOException {
+	System.out.println("Downloading the Pathway Interaction Database...");
+	ReadableByteChannel rbc = Channels.newChannel(pidUrl.openStream());
+	FileOutputStream fos = new FileOutputStream("data/NCI-Nature_Curated.xml.gz");
+	System.out.println("Saving the archive file...");
+	fos.getChannel().transferFrom(rbc, 0, 1 << 24);
+	System.out.println("Unzipping the Pathway Interaction Database...");
+	byte[] buffer = new byte[1024];
+	GZIPInputStream gzis = new GZIPInputStream(new FileInputStream("data/NCI-Nature_Curated.xml.gz"));
+	FileOutputStream out = new FileOutputStream("data/NCI-Nature_Curated.xml");
+	int len;
+	while ((len = gzis.read(buffer)) > 0) {
+	    out.write(buffer, 0, len);
+	}
+	gzis.close();
+	out.close();
+	System.out.println("The latest version of the Pathway Interaction Database has been succesfully downloaded and is ready to be processed");
+	this.outputPath = pathToOutputFile;
+	this.pid = new PID();
+	this.burger = new XMLBurger("data/NCI-Nature_Curated.xml");
     }
 
     public static void main(String[] args) throws XMLStreamException, FactoryConfigurationError, IOException  {
@@ -126,7 +162,7 @@ public class Converter {
      * Save the created objects in  ".pid" file.
      * @throws IOException 
      */
-    private void save() throws IOException {
+    void save() throws IOException {
 
 	FileOutputStream fileOut = new FileOutputStream(this.outputPath);
 	ObjectOutputStream out = new ObjectOutputStream(fileOut);
