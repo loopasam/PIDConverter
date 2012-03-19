@@ -8,11 +8,12 @@ import java.util.ArrayList;
 
 /**
  * LabelTypes are top level categories for a small ontology present within PID
+ * 
  * @author Samuel Croset
- *
+ * 
  */
 @SuppressWarnings("serial")
-public class LabelType implements Serializable{
+public class LabelType implements Serializable {
     private ArrayList<LabelValue> labelValues;
     private String name;
     private int id;
@@ -23,27 +24,27 @@ public class LabelType implements Serializable{
     public LabelType() {
 	this.labelValues = new ArrayList<LabelValue>();
     }
-    
+
     /**
      * @return the name of the label type, in other word name of the ontology
      */
     public String getName() {
-        return name;
+	return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+	this.name = name;
     }
 
     /**
      * @return the id of the label type
      */
     public int getId() {
-        return id;
+	return id;
     }
 
     public void setId(int id) {
-        this.id = id;
+	this.id = id;
     }
 
     public void setLabelValues(ArrayList<LabelValue> labelValues) {
@@ -63,7 +64,7 @@ public class LabelType implements Serializable{
      */
     public LabelValue getLabelValue(int id) {
 	for (LabelValue labelValue : this.labelValues) {
-	    if(labelValue.getId() == id){
+	    if (labelValue.getId() == id) {
 		return labelValue;
 	    }
 	}

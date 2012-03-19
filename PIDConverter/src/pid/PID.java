@@ -10,8 +10,9 @@ import java.io.Serializable;
 
 /**
  * An Object mimicking the XML coming from PID
+ * 
  * @author Samuel Croset
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class PID implements Serializable {
@@ -20,16 +21,15 @@ public class PID implements Serializable {
     private Ontology ontology;
     private Model model;
 
-
-
     /**
-     * @param path to serialised file
-     * @throws IOException 
-     * @throws ClassNotFoundException 
+     * @param path
+     *            to serialised file
+     * @throws IOException
+     * @throws ClassNotFoundException
      */
     public PID(String path) throws IOException, ClassNotFoundException {
 
-	FileInputStream fileIn =  new FileInputStream(path);
+	FileInputStream fileIn = new FileInputStream(path);
 	ObjectInputStream in = new ObjectInputStream(fileIn);
 	PID pid = (PID) in.readObject();
 	this.created = pid.getCreated();
@@ -54,10 +54,6 @@ public class PID implements Serializable {
 	return created;
     }
 
-    /**
-     * @param set the date of creation.
-     * 
-     */
     public void setCreated(String created) {
 	this.created = created;
     }
@@ -75,7 +71,8 @@ public class PID implements Serializable {
     }
 
     /**
-     * @return get the model object, inside which there are Molecules, Pathways and Interactions.
+     * @return get the model object, inside which there are Molecules, Pathways
+     *         and Interactions.
      * 
      */
     public Model getModel() {
@@ -85,6 +82,5 @@ public class PID implements Serializable {
     public void setModel(Model model) {
 	this.model = model;
     }
-
 
 }

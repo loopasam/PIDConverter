@@ -8,12 +8,13 @@ import java.util.ArrayList;
 
 /**
  * A pathway from PID
+ * 
  * @author Samuel Croset
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class Pathway implements Serializable {
-    
+
     private int id;
     private boolean isSubnet;
     private String organism;
@@ -23,7 +24,7 @@ public class Pathway implements Serializable {
     private ArrayList<String> curators;
     private ArrayList<String> reviewers;
     private ArrayList<PathwayComponent> pathwayComponents;
-    
+
     /**
      * Only constructor, initialise the arrays.
      */
@@ -33,70 +34,78 @@ public class Pathway implements Serializable {
 	this.reviewers = new ArrayList<String>();
 	this.pathwayComponents = new ArrayList<PathwayComponent>();
     }
-    
+
     /**
      * @return the id of the pathway
      */
     public int getId() {
-        return id;
+	return id;
     }
+
     public void setId(int id) {
-        this.id = id;
+	this.id = id;
     }
-    
+
     /**
-     * @return whether the current pathway is a subnet of another pathway or not.
+     * @return whether the current pathway is a subnet of another pathway or
+     *         not.
      */
     public boolean isSubnet() {
-        return isSubnet;
+	return isSubnet;
     }
+
     public void setSubnet(boolean isSubnet) {
-        this.isSubnet = isSubnet;
+	this.isSubnet = isSubnet;
     }
-    
+
     /**
      * @return the organism of the pathway.
      */
     public String getOrganism() {
-        return organism;
+	return organism;
     }
+
     public void setOrganism(String organism) {
-        this.organism = organism;
+	this.organism = organism;
     }
-    
+
     /**
      * @return the human readable form of the pathway name.
      */
     public String getLongName() {
-        return longName;
+	return longName;
     }
+
     public void setLongName(String longName) {
-        this.longName = longName;
+	this.longName = longName;
     }
-    
+
     /**
-     * @return the name of the pathway in a more computer oriented way. 
+     * @return the name of the pathway in a more computer oriented way.
      */
     public String getShortName() {
-        return shortName;
+	return shortName;
     }
+
     public void setShortName(String shortName) {
-        this.shortName = shortName;
+	this.shortName = shortName;
     }
+
     public void setSource(String source) {
 	this.source = source;
     }
-    
+
     /**
      * @return the original source holding the data.
      */
     public String getSource() {
 	return source;
     }
+
     public void setCurators(ArrayList<String> curators) {
 	this.curators = curators;
     }
-    
+
     /**
      * @return the curators of the pathway.
      */
@@ -115,15 +124,17 @@ public class Pathway implements Serializable {
 	return reviewers;
     }
 
-    public void setPathwayComponents(ArrayList<PathwayComponent> pathwayComponents) {
+    public void setPathwayComponents(
+	    ArrayList<PathwayComponent> pathwayComponents) {
 	this.pathwayComponents = pathwayComponents;
     }
 
     /**
-     * @return the list of steps within the pathway, so called pathway components.
+     * @return the list of steps within the pathway, so called pathway
+     *         components.
      */
     public ArrayList<PathwayComponent> getPathwayComponents() {
 	return pathwayComponents;
     }
-    
+
 }

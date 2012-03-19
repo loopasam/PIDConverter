@@ -8,15 +8,16 @@ import java.util.ArrayList;
 
 /**
  * Interaction between two entities
+ * 
  * @author Samuel Croset
- *
+ * 
  */
 @SuppressWarnings("serial")
-public class Interaction implements Serializable{
-    
-    //It's a string because of one problem with an id
+public class Interaction implements Serializable {
+
+    // It's a string because of one problem with an id
     private String id;
-    //Odd construct of the XML
+    // Odd construct of the XML
     private String interactionType;
     private Abstraction abstraction;
     private String source;
@@ -24,87 +25,99 @@ public class Interaction implements Serializable{
     private ArrayList<String> evidences;
     private ArrayList<Integer> references;
     private ArrayList<InteractionComponent> components;
-    
+
     /**
      * @return the ID of the current interaction
      */
     public String getId() {
-        return id;
+	return id;
     }
+
     public void setId(String id) {
-        this.id = id;
+	this.id = id;
     }
+
     public void setInteractionType(String interactionType) {
 	this.interactionType = interactionType;
     }
-    
+
     /**
-     * @return the type of interaction. <bold>WARNING: this part is odd, because of the original XML</bold>
+     * @return the type of interaction. <bold>WARNING: this part is odd, because
+     *         of the original XML</bold>
      */
     public String getInteractionType() {
 	return interactionType;
     }
-    
+
     /**
      * @return the abstraction object, which is a reference to another pathway.
      */
     public Abstraction getAbstraction() {
-        return abstraction;
+	return abstraction;
     }
+
     public void setAbstraction(Abstraction abstraction) {
-        this.abstraction = abstraction;
+	this.abstraction = abstraction;
     }
-    
+
     /**
-     * @return the databse from which the interaction is coming from (only PID at the moment).
+     * @return the databse from which the interaction is coming from (only PID
+     *         at the moment).
      */
     public String getSource() {
-        return source;
+	return source;
     }
+
     public void setSource(String source) {
-        this.source = source;
+	this.source = source;
     }
-    
+
     /**
-     * @return the condition (Positive or Negative) governing the apparition of this interation.
+     * @return the condition (Positive or Negative) governing the apparition of
+     *         this interation.
      */
     public ArrayList<Condition> getConditions() {
-        return conditions;
+	return conditions;
     }
+
     public void setConditions(ArrayList<Condition> conditions) {
-        this.conditions = conditions;
+	this.conditions = conditions;
     }
-    
+
     /**
-     * @return the list of evidences. At the moment it is a 3 letters code, should be mapped to human readable via static variable.
+     * @return the list of evidences. At the moment it is a 3 letters code,
+     *         should be mapped to human readable via static variable.
      */
     public ArrayList<String> getEvidences() {
-        return evidences;
+	return evidences;
     }
+
     public void setEvidences(ArrayList<String> evidences) {
-        this.evidences = evidences;
+	this.evidences = evidences;
     }
-    
+
     /**
      * @return the list of PubMed Ids (pmid) describing the interaction.
      */
     public ArrayList<Integer> getReferences() {
-        return references;
+	return references;
     }
+
     public void setReferences(ArrayList<Integer> references) {
-        this.references = references;
+	this.references = references;
     }
-    
+
     /**
      * @return the list of components interacting in this interaction.
      */
     public ArrayList<InteractionComponent> getComponents() {
-        return components;
+	return components;
     }
+
     public void setComponents(ArrayList<InteractionComponent> components) {
-        this.components = components;
+	this.components = components;
     }
-    
+
     /**
      * Only constructor, initialise the arrays.
      */
@@ -114,6 +127,5 @@ public class Interaction implements Serializable{
 	this.evidences = new ArrayList<String>();
 	this.references = new ArrayList<Integer>();
     }
-    
-    
+
 }

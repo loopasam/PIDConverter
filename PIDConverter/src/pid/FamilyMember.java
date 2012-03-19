@@ -8,12 +8,13 @@ import java.util.ArrayList;
 
 /**
  * A molecule member of a family (higher order).
+ * 
  * @author Samuel Croset
- *
+ * 
  */
 @SuppressWarnings("serial")
-public class FamilyMember implements Serializable{
-    
+public class FamilyMember implements Serializable {
+
     private int member_molecule_idref;
     private ArrayList<Label> labels;
     private PTMExpression ptmExpression;
@@ -50,7 +51,7 @@ public class FamilyMember implements Serializable{
     public ArrayList<Label> getLabels() {
 	return labels;
     }
-    
+
     /**
      * Only constructor, initialise the array.
      */

@@ -3,7 +3,6 @@
  */
 package test;
 
-
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -27,11 +26,11 @@ import pid.PTMTerm;
 import pid.PreferredSymbolName;
 import pid.UniprotName;
 
-
 /**
  * Test to see whether the molecules elements are well populated
+ * 
  * @author Samuel Croset
- *
+ * 
  */
 public class MoleculesTest {
 
@@ -61,8 +60,10 @@ public class MoleculesTest {
     public void testComplexComponentMolecule() throws XMLStreamException {
 	Model model = pid.getModel();
 	Molecule moleculeComplex = model.getMolecule(207617);
-	assertEquals("RET9/GFRalpha1/GDNF/SHC/Grb2/SOS1", moleculeComplex.getPreferredSymbolName().getValue());
-	ArrayList<ComplexComponent> complexComponents = moleculeComplex.getComplexComponents();
+	assertEquals("RET9/GFRalpha1/GDNF/SHC/Grb2/SOS1", moleculeComplex
+		.getPreferredSymbolName().getValue());
+	ArrayList<ComplexComponent> complexComponents = moleculeComplex
+		.getComplexComponents();
 	assertEquals(9, complexComponents.size());
 	ComplexComponent component = complexComponents.get(0);
 	assertEquals(201600, component.getMolecule_idref());
@@ -73,7 +74,7 @@ public class MoleculesTest {
 	assertEquals(806, term.getPosition());
 	assertEquals("phosphorylation", term.getModification());
     }
-    
+
     @Test
     public void testFamiliesMolecule() {
 	Model model = pid.getModel();
@@ -84,7 +85,7 @@ public class MoleculesTest {
 	PTMTerm ptmTerm = member.getPtmExpression().getPtmTerms().get(0);
 	assertEquals("P07947", ptmTerm.getProtein());
     }
-    
+
     @Test
     public void testPartMolecule() {
 	Model model = pid.getModel();

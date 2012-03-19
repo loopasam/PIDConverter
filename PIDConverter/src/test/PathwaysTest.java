@@ -5,7 +5,6 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
-
 import javax.xml.stream.XMLStreamException;
 
 import manipulator.Converter;
@@ -19,7 +18,7 @@ import pid.Pathway;
 
 /**
  * @author Samuel Croset
- *
+ * 
  */
 public class PathwaysTest {
 
@@ -39,14 +38,16 @@ public class PathwaysTest {
 	Pathway pathway = model.getPathway(200202);
 	assertEquals(pathway.isSubnet(), true);
 	assertEquals("Hs", pathway.getOrganism());
-	assertEquals("HIF-1-alpha transcription factor network", pathway.getLongName());
+	assertEquals("HIF-1-alpha transcription factor network",
+		pathway.getLongName());
 	assertEquals("hif1_tfpathway", pathway.getShortName());
 	assertEquals("NCI-Nature Curated", pathway.getSource());
 	assertEquals(1, pathway.getCurators().size());
 	assertEquals("Kira Anthony", pathway.getCurators().get(0));
 	assertEquals("Guo-Hua Fong", pathway.getReviewers().get(1));
 	assertEquals(57, pathway.getPathwayComponents().size());
-	assertEquals("209914", pathway.getPathwayComponents().get(55).getInteraction_idref());
+	assertEquals("209914", pathway.getPathwayComponents().get(55)
+		.getInteraction_idref());
     }
 
 }
