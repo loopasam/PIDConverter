@@ -3,12 +3,15 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * An Object mimicking the XML coming from PID
  * @author Samuel Croset
  *
  */
-public class PID {
+@SuppressWarnings("serial")
+public class PID implements Serializable {
     
     private String created;
     private Ontology ontology;

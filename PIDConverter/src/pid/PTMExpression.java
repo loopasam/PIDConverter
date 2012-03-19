@@ -3,6 +3,7 @@
  */
 package pid;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,8 @@ import java.util.ArrayList;
  * @author Samuel Croset
  *
  */
-public class PTMExpression {
+@SuppressWarnings("serial")
+public class PTMExpression implements Serializable{
     
     private ArrayList<PTMTerm> ptmTerms;
 

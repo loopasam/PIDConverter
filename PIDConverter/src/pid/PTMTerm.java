@@ -3,12 +3,15 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * A PTM for the current molecule.
  * @author Samuel Croset
  *
  */
-public class PTMTerm {
+@SuppressWarnings("serial")
+public class PTMTerm implements Serializable{
     
     private String protein;
     private int position;

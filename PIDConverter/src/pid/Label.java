@@ -3,12 +3,15 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * Labels give information about the location, activity state, etc... of molecules
  * @author Samuel Croset
  *
  */
-public class Label {
+@SuppressWarnings("serial")
+public class Label implements Serializable{
     
     private String value;
 

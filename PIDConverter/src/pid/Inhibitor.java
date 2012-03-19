@@ -3,10 +3,13 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * @author Samuel Croset
  *
  */
-public class Inhibitor extends InteractionComponent {
+@SuppressWarnings("serial")
+public class Inhibitor extends InteractionComponent implements Serializable {
 
 }

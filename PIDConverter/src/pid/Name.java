@@ -3,12 +3,15 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * Reference to a name for an entity.
  * @author Samuel Croset
  *
  */
-public class Name {
+@SuppressWarnings("serial")
+public class Name implements Serializable {
     
     private String abbreviation;
     private String fullName;

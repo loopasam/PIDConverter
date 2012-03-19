@@ -3,10 +3,13 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * @author Samuel Croset
  *
  */
-public class Agent extends InteractionComponent {
+@SuppressWarnings("serial")
+public class Agent extends InteractionComponent implements Serializable {
 
 }

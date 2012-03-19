@@ -3,11 +3,14 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * Label containing the info about the activity state
  * @author Samuel Croset
  *
  */
-public class ActivityStateLabel extends Label {
+@SuppressWarnings("serial")
+public class ActivityStateLabel extends Label implements Serializable{
 
 }

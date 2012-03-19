@@ -10,6 +10,7 @@ import pid.Molecule;
  * @author Samuel Croset
  *
  */
+@SuppressWarnings("serial")
 public class Protein extends Molecule {
 
 }

@@ -3,12 +3,15 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * A link to another pathway from a pathway. It is usually represented as a box on a PID diagram.
  * @author Samuel Croset
  *
  */
-public class Abstraction {
+@SuppressWarnings("serial")
+public class Abstraction implements Serializable{
 
     private int pathway_idref;
     private String pathway_name;

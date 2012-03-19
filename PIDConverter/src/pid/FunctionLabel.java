@@ -3,10 +3,13 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * @author Samuel Croset
  *
  */
-public class FunctionLabel extends Label {
+@SuppressWarnings("serial")
+public class FunctionLabel extends Label implements Serializable{
 
 }

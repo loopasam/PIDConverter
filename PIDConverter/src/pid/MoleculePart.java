@@ -3,12 +3,15 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * If the molecule is part of a bigger molecule, in some occasion, it is described within that class.
  * @author Samuel Croset
  *
  */
-public class MoleculePart {
+@SuppressWarnings("serial")
+public class MoleculePart implements Serializable{
     
     private int whole_molecule_idref;
     private int part_molecule_idref;

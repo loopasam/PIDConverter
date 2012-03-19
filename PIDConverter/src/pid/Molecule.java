@@ -3,6 +3,7 @@
  */
 package pid;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,8 @@ import java.util.ArrayList;
  * @author Samuel Croset
  *
  */
-public class Molecule {
+@SuppressWarnings("serial")
+public class Molecule implements Serializable{
     
     private int id;
     private ArrayList<Name> names;

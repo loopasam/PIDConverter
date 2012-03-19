@@ -8,13 +8,14 @@ import static org.junit.Assert.assertEquals;
 
 import javax.xml.stream.XMLStreamException;
 
+import manipulator.Converter;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import pid.Model;
 import pid.PID;
 import pid.Pathway;
-import converter.Converter;
 
 /**
  * @author Samuel Croset

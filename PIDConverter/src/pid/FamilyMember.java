@@ -3,6 +3,7 @@
  */
 package pid;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,8 @@ import java.util.ArrayList;
  * @author Samuel Croset
  *
  */
-public class FamilyMember {
+@SuppressWarnings("serial")
+public class FamilyMember implements Serializable{
     
     private int member_molecule_idref;
     private ArrayList<Label> labels;

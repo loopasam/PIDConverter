@@ -3,11 +3,14 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * Gene Ontology reference
  * @author Samuel Croset
  *
  */
-public class GeneOntologyName extends Name {
+@SuppressWarnings("serial")
+public class GeneOntologyName extends Name implements Serializable{
 
 }

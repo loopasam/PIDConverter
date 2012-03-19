@@ -3,6 +3,7 @@
  */
 package pid;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,8 @@ import java.util.ArrayList;
  * @author Samuel Croset
  *
  */
-public class Interaction {
+@SuppressWarnings("serial")
+public class Interaction implements Serializable{
     
     //It's a string because of one problem with an id
     private String id;

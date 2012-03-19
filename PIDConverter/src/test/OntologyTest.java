@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 
 import javax.xml.stream.XMLStreamException;
 
+import manipulator.Converter;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +17,6 @@ import pid.LabelValue;
 import pid.Ontology;
 import pid.PID;
 
-import converter.Converter;
 
 
 /**

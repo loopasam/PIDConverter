@@ -3,12 +3,15 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * A label Value is a category of a label type pseudoo-ontology
  * @author Samuel Croset
  *
  */
-public class LabelValue {
+@SuppressWarnings("serial")
+public class LabelValue implements Serializable{
 
     private String name;
     private int id;

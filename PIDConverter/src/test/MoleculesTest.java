@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import javax.xml.stream.XMLStreamException;
 
+import manipulator.Converter;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,7 +26,6 @@ import pid.PTMExpression;
 import pid.PTMTerm;
 import pid.PreferredSymbolName;
 import pid.UniprotName;
-import converter.Converter;
 
 
 /**

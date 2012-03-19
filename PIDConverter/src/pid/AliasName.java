@@ -3,11 +3,14 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * Alternative name for a protein
  * @author Samuel Croset
  *
  */
-public class AliasName extends Name {
+@SuppressWarnings("serial")
+public class AliasName extends Name implements Serializable{
 
 }

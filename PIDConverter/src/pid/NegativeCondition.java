@@ -8,6 +8,7 @@ package pid;
  * @author Samuel Croset
  *
  */
+@SuppressWarnings("serial")
 public class NegativeCondition extends Condition {
 
 }

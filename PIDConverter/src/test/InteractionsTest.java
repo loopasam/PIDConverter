@@ -8,13 +8,14 @@ import static org.junit.Assert.*;
 
 import javax.xml.stream.XMLStreamException;
 
+import manipulator.Converter;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import pid.Interaction;
 import pid.Model;
 import pid.PID;
-import converter.Converter;
 
 /**
  * Test to see whether the interactions are correctly populated.

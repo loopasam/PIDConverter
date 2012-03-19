@@ -3,6 +3,7 @@
  */
 package pid;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,8 @@ import java.util.ArrayList;
  * @author Samuel Croset
  *
  */
-public class InteractionComponent {
+@SuppressWarnings("serial")
+public class InteractionComponent implements Serializable{
     
     private PTMExpression ptmExpression;
     private ArrayList<Label> labels;

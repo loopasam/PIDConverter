@@ -3,6 +3,8 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 import pid.Molecule;
 
 /**
@@ -10,6 +12,7 @@ import pid.Molecule;
  * @author Samuel Croset
  *
  */
-public class Compound extends Molecule {
+@SuppressWarnings("serial")
+public class Compound extends Molecule implements Serializable{
 
 }

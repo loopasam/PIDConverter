@@ -3,12 +3,15 @@
  */
 package pid;
 
+import java.io.Serializable;
+
 /**
  * A generic condition, influencing an interaction
  * @author Samuel Croset
  *
  */
-public class Condition {
+@SuppressWarnings("serial")
+public class Condition implements Serializable {
     
     private String condition_type;
 
