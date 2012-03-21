@@ -16,7 +16,7 @@ import pid.PID;
 public class Reader {
 
     public static void main(String[] args) throws IOException,
-	    ClassNotFoundException {
+    ClassNotFoundException {
 
 	PID pid = new PID("data/data.pid");
 

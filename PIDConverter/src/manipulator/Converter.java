@@ -56,7 +56,8 @@ import pid.UniprotName;
 import core.XMLBurger;
 
 /**
- * @author Samuel Croset Main Class
+ * Converter class for exporting the XML structure into objects.
+ * @author Samuel Croset
  */
 public class Converter {
 
