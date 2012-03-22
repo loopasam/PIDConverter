@@ -4,7 +4,13 @@
 |  __/| || |_| | | |__| (_) | | | \ V /  __/ |  | ||  __/ |   
 |_|  |___|____/   \____\___/|_| |_|\_/ \___|_|   \__\___|_|   
 
-In Development
 
-A converter for the data provided by the Pathway Interaction Database (http://pid.nci.nih.gov/).
-The XML provided is converted into Java Objects, which can be used by other programs.
+XMLBurger
+Author: Samuel Croset
+Version: 1.0
+Version Date: March 2012
+Language: Java 1.6
+
+The Pathway Interaction Database (http://pid.nci.nih.gov/) is a highly-structured, curated collection of information about known biomolecular interactions and key cellular processes assembled into signalling pathways. It is a collaborative project between the US National Cancer Institute (NCI) and Nature Publishing Group (NPG), and is an open access online resource.
+
+PIDConverter is a Java API which extract the data from the XML version of this repository and convert it into Java objects, in order to be used by other programs.
