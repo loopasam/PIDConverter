@@ -169,7 +169,7 @@ public class Converter {
      * 
      * @throws IOException
      */
-    void save() throws IOException {
+    public void save() throws IOException {
 
 	FileOutputStream fileOut = new FileOutputStream(this.outputPath);
 	ObjectOutputStream out = new ObjectOutputStream(fileOut);
