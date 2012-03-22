@@ -10,6 +10,7 @@ Author: Samuel Croset
 Version: 1.0
 Version Date: March 2012
 Language: Java 1.6
+Documentation: https://github.com/loopasam/PIDConverter/wiki
 
 The Pathway Interaction Database (http://pid.nci.nih.gov/) is a highly-structured, curated collection of information about known biomolecular interactions and key cellular processes assembled into signalling pathways. It is a collaborative project between the US National Cancer Institute (NCI) and Nature Publishing Group (NPG), and is an open access online resource.
 
