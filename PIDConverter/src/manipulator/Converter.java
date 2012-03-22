@@ -132,15 +132,15 @@ public class Converter {
 	System.out.println("Downloading the Pathway Interaction Database...");
 	ReadableByteChannel rbc = Channels.newChannel(pidUrl.openStream());
 	FileOutputStream fos = new FileOutputStream(
-		"data/NCI-Nature_Curated.xml.gz");
+		"NCI-Nature_Curated.xml.gz");
 	System.out.println("Saving the archive file...");
 	fos.getChannel().transferFrom(rbc, 0, 1 << 24);
 	System.out.println("Unzipping the Pathway Interaction Database...");
 	byte[] buffer = new byte[1024];
 	GZIPInputStream gzis = new GZIPInputStream(new FileInputStream(
-		"data/NCI-Nature_Curated.xml.gz"));
+		"NCI-Nature_Curated.xml.gz"));
 	FileOutputStream out = new FileOutputStream(
-		"data/NCI-Nature_Curated.xml");
+		"NCI-Nature_Curated.xml");
 	int len;
 	while ((len = gzis.read(buffer)) > 0) {
 	    out.write(buffer, 0, len);
@@ -151,7 +151,7 @@ public class Converter {
 		.println("The latest version of the Pathway Interaction Database has been succesfully downloaded and is ready to be processed");
 	this.outputPath = pathToOutputFile;
 	this.pid = new PID();
-	this.burger = new XMLBurger("data/NCI-Nature_Curated.xml");
+	this.burger = new XMLBurger("NCI-Nature_Curated.xml");
     }
 
     public static void main(String[] args) throws XMLStreamException,
