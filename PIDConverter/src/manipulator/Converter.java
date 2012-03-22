@@ -157,8 +157,8 @@ public class Converter {
     public static void main(String[] args) throws XMLStreamException,
 	    FactoryConfigurationError, IOException {
 
-	Converter converter = new Converter("data/NCI-Nature_Curated.xml",
-		"data/data.pid");
+	Converter converter = new Converter("NCI-Nature_Curated.xml",
+		"data.pid");
 	converter.start();
 	converter.save();
 
